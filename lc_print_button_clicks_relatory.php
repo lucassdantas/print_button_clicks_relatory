@@ -19,21 +19,28 @@ function onActivate(){
         && current_user_can( 'activate_plugins' ) 
         && !is_plugin_active( 'lc_button_click_register/lc_button_click_register.php' ) 
     ) {
-        add_action( 'admin_notices', function(){
-
-            lc_print_button_click_relatory_notice_error($error_message);
-        });
-        deactivate_plugins( plugin_basename( __FILE__ ) ); 
-        if (isset( $_GET['activate'])) unset( $_GET['activate'] );
         $error_message = 'Para utilizar este plugin, é necessário ativar o plugin <a href="https://github.com/lucassdantas/wp_lcButtonClickRegister" target="_blank">"lc_button_click_register"</a> <br><a href="' . admin_url( 'plugins.php' ) . '">&laquo; Voltar aos plugins</a>';
         wp_die($error_message);
+        return false;
     }
-	
+    
+    if ( class_exists( 'WP_CLI' ) ) {
+        WP_CLI::add_command( 'print_button_clicks_relatory', 'print_button_clicks_relatory' );
+    }
 }
-function lc_print_button_click_relatory_notice_error($message){
-?>
-    <div class="error">
-        <p><?php $message ?></p>
-    </div>
-<?php
+
+function print_button_clicks_relatory( ) {
+    WP_CLI::success('oi');
+    
+    // global $wpdb;
+
+    // $result = $wpdb->get_results ( "
+    //     SELECT * 
+    //     FROM  $wpdb->lc_button_clicks
+    // " );
+
+    // foreach ( $result as $register )
+    // {
+    //     WP_CLI::success($register);
+    // }
 }
