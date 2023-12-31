@@ -27,18 +27,31 @@ function onActivate(){
 if ( class_exists( 'WP_CLI' ) ) {
     WP_CLI::add_command( 'print_button_clicks_relatory', 'print_button_clicks_relatory' );
 }
+
 function print_button_clicks_relatory( ) {
-    WP_CLI::success('oi');
+    WP_CLI::log('oi');
     
-    // global $wpdb;
+    global $wpdb;
 
-    // $result = $wpdb->get_results ( "
-    //     SELECT * 
-    //     FROM  $wpdb->lc_button_clicks
-    // " );
+    $result = $wpdb->get_results ( "
+        SELECT click_time 
+        FROM  $wpdb->prefix"."lc_button_clicks
+    " );
 
-    // foreach ( $result as $register )
-    // {
-    //     WP_CLI::success($register);
-    // }
+    $result = var_dump($result);
+    foreach ( $result as $register )
+    {
+        WP_CLI::log($register[0]);
+    }
+}
+
+add_shortcode('on_init', 'testFunction');
+function testFunction(){
+    global $wpdb;
+
+    $result = $wpdb->get_results ( "
+        SELECT click_time 
+        FROM  $wpdb->prefix"."lc_button_clicks
+    " );
+    return print_r($result);
 }
