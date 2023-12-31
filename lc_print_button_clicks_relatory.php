@@ -29,29 +29,15 @@ if ( class_exists( 'WP_CLI' ) ) {
 }
 
 function print_button_clicks_relatory( ) {
-    WP_CLI::log('oi');
     
     global $wpdb;
-
     $result = $wpdb->get_results ( "
         SELECT click_time 
         FROM  $wpdb->prefix"."lc_button_clicks
     " );
 
-    $result = var_dump($result);
     foreach ( $result as $register )
     {
-        WP_CLI::log($register[0]);
+        WP_CLI::log($register->click_time);
     }
-}
-
-add_shortcode('on_init', 'testFunction');
-function testFunction(){
-    global $wpdb;
-
-    $result = $wpdb->get_results ( "
-        SELECT click_time 
-        FROM  $wpdb->prefix"."lc_button_clicks
-    " );
-    return print_r($result);
 }
