@@ -11,7 +11,6 @@
  if ( ! defined( 'ABSPATH' ) ||  !function_exists('add_action')) {
 	exit;
 }
-
 register_activation_hook( __FILE__, 'onActivate' );
 function onActivate(){
     if ( 
@@ -23,12 +22,11 @@ function onActivate(){
         wp_die($error_message);
         return false;
     }
-    
-    if ( class_exists( 'WP_CLI' ) ) {
-        WP_CLI::add_command( 'print_button_clicks_relatory', 'print_button_clicks_relatory' );
-    }
 }
 
+if ( class_exists( 'WP_CLI' ) ) {
+    WP_CLI::add_command( 'print_button_clicks_relatory', 'print_button_clicks_relatory' );
+}
 function print_button_clicks_relatory( ) {
     WP_CLI::success('oi');
     
