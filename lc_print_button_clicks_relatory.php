@@ -1,7 +1,7 @@
 <?php 
 /**
  * Plugin Name: Print Button Clicks Relatory
- * Description: Add the command print_relatory to wp-cli to print button click relatory
+ * Description: Add the command print_button_clicks_relatory to wp-cli to print button click relatory
  * Plugin URI:  https://github.com/lucassdantas/wp_lcPrintButtonClicksRelatory
  * Version:     1.0.0
  * Author:      Lucas Dantas
